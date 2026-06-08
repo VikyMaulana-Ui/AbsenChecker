@@ -1,0 +1,82 @@
+[
+    {
+        "date": "2026-01-01",
+        "name": "Hari tahun baru",
+        "type": "public"
+    },
+    {
+        "date": "2026-01-16",
+        "name": "Maulid Nabi Muhammad",
+        "type": "public"
+    },
+    {
+        "date": "2026-02-17",
+        "name": "Tahun Baru Imlek",
+        "type": "public"
+    },
+    {
+        "date": "2026-03-19",
+        "name": "Hari Raya Nyepi",
+        "type": "public"
+    },
+    {
+        "date": "2026-03-20",
+        "name": "Hari Raya Idul Fitri",
+        "type": "public"
+    },
+    {
+        "date": "2026-03-21",
+        "name": "Hari Raya Idul Fitri",
+        "type": "public"
+    },
+    {
+        "date": "2026-04-03",
+        "name": "Wafat Yesus Kristus",
+        "type": "public"
+    },
+    {
+        "date": "2026-05-01",
+        "name": "Hari Buruh Internasional",
+        "type": "public"
+    },
+    {
+        "date": "2026-05-14",
+        "name": "Kenaikan Yesus Kristus",
+        "type": "public"
+    },
+    {
+        "date": "2026-05-27",
+        "name": "Hari Raya Idul Adha",
+        "type": "public"
+    },
+    {
+        "date": "2026-05-31",
+        "name": "Hari Raya Waisak",
+        "type": "public"
+    },
+    {
+        "date": "2026-06-01",
+        "name": "Hari Lahir Pancasila",
+        "type": "public"
+    },
+    {
+        "date": "2026-06-16",
+        "name": "Tahun Baru Islam",
+        "type": "public"
+    },
+    {
+        "date": "2026-08-17",
+        "name": "Hari Ulang Tahun Kemerdekaan Republik Indonesia",
+        "type": "public"
+    },
+    {
+        "date": "2026-08-25",
+        "name": "Maulid Nabi Muhammad",
+        "type": "public"
+    },
+    {
+        "date": "2026-12-25",
+        "name": "Hari Raya Natal",
+        "type": "public"
+    }
+]

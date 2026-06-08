@@ -1,0 +1,87 @@
+[
+    {
+        "date": "2027-01-01",
+        "name": "Hari tahun baru",
+        "type": "public"
+    },
+    {
+        "date": "2027-01-05",
+        "name": "Maulid Nabi Muhammad",
+        "type": "public"
+    },
+    {
+        "date": "2027-02-06",
+        "name": "Tahun Baru Imlek",
+        "type": "public"
+    },
+    {
+        "date": "2027-03-08",
+        "name": "Hari Raya Nyepi",
+        "type": "public"
+    },
+    {
+        "date": "2027-03-09",
+        "name": "Hari Raya Idul Fitri",
+        "type": "public"
+    },
+    {
+        "date": "2027-03-10",
+        "name": "Hari Raya Idul Fitri",
+        "type": "public"
+    },
+    {
+        "date": "2027-03-26",
+        "name": "Wafat Yesus Kristus",
+        "type": "public"
+    },
+    {
+        "date": "2027-05-01",
+        "name": "Hari Buruh Internasional",
+        "type": "public"
+    },
+    {
+        "date": "2027-05-06",
+        "name": "Kenaikan Yesus Kristus",
+        "type": "public"
+    },
+    {
+        "date": "2027-05-16",
+        "name": "Hari Raya Idul Adha",
+        "type": "public"
+    },
+    {
+        "date": "2027-05-20",
+        "name": "Hari Raya Waisak",
+        "type": "public"
+    },
+    {
+        "date": "2027-06-01",
+        "name": "Hari Lahir Pancasila",
+        "type": "public"
+    },
+    {
+        "date": "2027-06-06",
+        "name": "Tahun Baru Islam",
+        "type": "public"
+    },
+    {
+        "date": "2027-08-14",
+        "name": "Maulid Nabi Muhammad",
+        "type": "public"
+    },
+    {
+        "date": "2027-08-17",
+        "name": "Hari Ulang Tahun Kemerdekaan Republik Indonesia",
+        "type": "public"
+    },
+    {
+        "date": "2027-12-25",
+        "name": "Maulid Nabi Muhammad",
+        "type": "public"
+    },
+    {
+        "date": "2027-12-25",
+        "name": "Hari Raya Natal",
+        "type": "public"
+    }
+]

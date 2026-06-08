@@ -139,9 +139,11 @@ class AbsensiAnalyzer:
     def _load(self):
         """Load file XLS mentah."""
         log.info(f"Membaca file: {self.xls_path}")
+        suffix = self.xls_path.suffix.lower()
+        engine = "openpyxl" if suffix == ".xlsx" else "xlrd"
         self.df_raw = pd.read_excel(
             self.xls_path,
-            engine="xlrd",
+            engine=engine,
             header=None
         )
 

@@ -1,119 +1,95 @@
 """
-holidays.py — Database hari libur nasional Indonesia 2026-2027+
+holidays.py — Holiday loader untuk AbsenChecker
 
-Format: {tahun: [(bulan, hari), ...]}
-Update sesuai kebutuhan untuk tahun-tahun berikutnya
-
-Note: Tanggal bisa berubah karena kalender Hijriyah (Imlek, Idul Fitri, dll)
-Periksa kalender resmi pemerintah untuk data terbaru.
+Format JSON:
+[
+    {
+        "date": "2026-01-01",
+        "name": "Hari tahun baru",
+        "type": "public"
+    }
+]
 """
 
-# ─── Database Libur Nasional ──────────────────────────────
-HOLIDAYS = {
-    2026: [
-        # Libur Nasional 2026
-        (1, 1),    # 1 Januari - Tahun Baru
-        (1, 28),   # 28 Januari - Isra Mi'raj
-        (2, 14),   # 14 Februari - Hari Raya Imlek
-        (2, 16),   # 16 Februari - Hari Libur bersama
-        (3, 11),   # 11 Maret - Keputusan Presiden
-        (3, 29),   # 29 Maret - Hari Raya Nyepi
-        (3, 30),   # 30 Maret - Hari Libur bersama
-        (3, 31),   # 31 Maret - Hari Libur bersama
-        (4, 10),   # 10 April - Jumat Agung
-        (4, 13),   # 13 April - Hari Raya Idul Fitri
-        (4, 14),   # 14 April - Hari Raya Idul Fitri
-        (4, 15),   # 15 April - Hari Libur bersama
-        (4, 16),   # 16 April - Hari Libur bersama
-        (4, 17),   # 17 April - Hari Libur bersama
-        (5, 1),    # 1 Mei - Hari Buruh
-        (5, 14),   # 14 Mei - Hari Raya Waisak
-        (5, 22),   # 22 Mei - Hari Raya Idul Adha
-        (6, 1),    # 1 Juni - Pancasila
-        (6, 11),   # 11 Juni - Tahun Baru Hijriyah
-        (8, 17),   # 17 Agustus - Kemerdekaan RI
-        (9, 16),   # 16 September - Mawlid Nabi Muhammad
-        (12, 25),  # 25 Desember - Hari Natal
-        (12, 26),  # 26 Desember - Hari Libur bersama
-    ],
-    2027: [
-        # Libur Nasional 2027
-        (1, 1),    # 1 Januari - Tahun Baru
-        (1, 17),   # 17 Januari - Isra Mi'raj
-        (2, 3),    # 3 Februari - Hari Raya Imlek
-        (2, 4),    # 4 Februari - Hari Libur bersama
-        (3, 11),   # 11 Maret - Keputusan Presiden
-        (3, 19),   # 19 Maret - Hari Raya Nyepi
-        (3, 20),   # 20 Maret - Hari Libur bersama
-        (3, 29),   # 29 Maret - Jumat Agung
-        (4, 2),    # 2 April - Hari Raya Idul Fitri
-        (4, 3),    # 3 April - Hari Raya Idul Fitri
-        (4, 4),    # 4 April - Hari Libur bersama
-        (4, 5),    # 5 April - Hari Libur bersama
-        (4, 6),    # 6 April - Hari Libur bersama
-        (5, 1),    # 1 Mei - Hari Buruh
-        (5, 3),    # 3 Mei - Hari Raya Waisak
-        (5, 10),   # 10 Mei - Hari Raya Idul Adha
-        (6, 1),    # 1 Juni - Pancasila
-        (6, 9),    # 9 Juni - Tahun Baru Hijriyah
-        (8, 17),   # 17 Agustus - Kemerdekaan RI
-        (9, 5),    # 5 September - Mawlid Nabi Muhammad
-        (12, 25),  # 25 Desember - Hari Natal
-        (12, 26),  # 26 Desember - Hari Libur bersama
-    ],
-}
+import json
+import os
+from datetime import datetime
+from typing import Optional
 
-# ─── Holiday Name Mapping ────────────────────────────────
-HOLIDAY_NAMES = {
-    (1, 1): "Tahun Baru",
-    (1, 17): "Isra Mi'raj",
-    (1, 28): "Isra Mi'raj",
-    (2, 3): "Hari Raya Imlek",
-    (2, 4): "Hari Libur bersama",
-    (2, 14): "Hari Raya Imlek",
-    (2, 16): "Hari Libur bersama",
-    (3, 11): "Keputusan Presiden",
-    (3, 19): "Hari Raya Nyepi",
-    (3, 20): "Hari Libur bersama",
-    (3, 29): "Jumat Agung",
-    (3, 30): "Hari Libur bersama",
-    (3, 31): "Hari Libur bersama",
-    (4, 2): "Hari Raya Idul Fitri",
-    (4, 3): "Hari Raya Idul Fitri",
-    (4, 4): "Hari Libur bersama",
-    (4, 5): "Hari Libur bersama",
-    (4, 6): "Hari Libur bersama",
-    (4, 10): "Jumat Agung",
-    (4, 13): "Hari Raya Idul Fitri",
-    (4, 14): "Hari Raya Idul Fitri",
-    (4, 15): "Hari Libur bersama",
-    (4, 16): "Hari Libur bersama",
-    (4, 17): "Hari Libur bersama",
-    (5, 1): "Hari Buruh",
-    (5, 3): "Hari Raya Waisak",
-    (5, 10): "Hari Raya Idul Adha",
-    (5, 14): "Hari Raya Waisak",
-    (5, 22): "Hari Raya Idul Adha",
-    (6, 1): "Hari Pancasila",
-    (6, 9): "Tahun Baru Hijriyah",
-    (6, 11): "Tahun Baru Hijriyah",
-    (8, 17): "Hari Kemerdekaan RI",
-    (9, 5): "Mawlid Nabi Muhammad",
-    (9, 16): "Mawlid Nabi Muhammad",
-    (12, 25): "Hari Natal",
-    (12, 26): "Hari Libur bersama",
-}
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+
+
+_CACHE = {}
+
+
+def _load_holidays_from_json(year: int):
+    """Load data libur dari file JSON lokal."""
+    file_path = os.path.join(DATA_DIR, f"holidays_ID_{year}.json")
+
+    if not os.path.exists(file_path):
+        return {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    holidays = {}
+
+    for item in data:
+        date_str = item.get("date")
+        name = item.get("name", "Hari Libur")
+        holiday_type = item.get("type", "public")
+
+        if not date_str:
+            continue
+
+        # Hanya ambil type public
+        if holiday_type != "public":
+            continue
+
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+
+        if date_obj.year != year:
+            continue
+
+        key = (date_obj.month, date_obj.day)
+        holidays[key] = name
+
+    return holidays
+
+
+def get_holidays(year: int):
+    """Ambil semua data libur untuk tahun tertentu."""
+    if year not in _CACHE:
+        _CACHE[year] = _load_holidays_from_json(year)
+
+    return _CACHE[year]
 
 
 def is_holiday(year: int, month: int, day: int) -> bool:
-    """Cek apakah tanggal tersebut adalah hari libur nasional."""
-    if year not in HOLIDAYS:
-        return False
-    
-    return (month, day) in HOLIDAYS[year]
+    """Cek apakah tanggal adalah hari libur nasional/public holiday."""
+    return (month, day) in get_holidays(year)
 
 
-def get_holiday_name(year: int, month: int, day: int) -> str:
-    """Get nama libur (jika ada)."""
-    name = HOLIDAY_NAMES.get((month, day), "Libur Nasional")
-    return name
+def get_holiday_name(year: int, month: int, day: int) -> Optional[str]:
+    """Ambil nama hari libur."""
+    return get_holidays(year).get((month, day))
+
+
+def print_holidays(year: int):
+    """Debug helper untuk cek daftar libur yang terbaca."""
+    holidays = get_holidays(year)
+
+    if not holidays:
+        print(f"Tidak ada data libur untuk tahun {year}")
+        return
+
+    print(f"Daftar libur {year}:")
+    for month, day in sorted(holidays):
+        print(f"{day:02d}-{month:02d}-{year}: {holidays[(month, day)]}")
+
+
+if __name__ == "__main__":
+    print_holidays(2026)
+    print()
+    print_holidays(2027)
